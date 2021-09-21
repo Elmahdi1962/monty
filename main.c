@@ -1,4 +1,5 @@
 #include "monty.h"
+stack_t *head = NULL;
 
 /**
  * main - entry point
@@ -9,27 +10,74 @@
 
 int main(int argc, char *argv[])
 {
-	FILE *file;
-	char line[256];
-
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-
-	file = fopen(argv[1], "r");
-	if (file == NULL)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-	
-
-    while (fgets(line, sizeof(line), file)) {
-        /* note that fgets don't strip the terminating \n, checking its
-           presence would allow to handle lines longer that sizeof(line) */
-        printf("%s", line); 
-    }
+	open_file(argv[1]);
+	free_nodes();
 	return (0);
+}
+
+/**
+ * create_node - Creates a node.
+ * @n: Number to go inside the node.
+ * Return: Upon sucess a pointer to the node. Otherwise NULL.
+ */
+stack_t *create_node(int n)
+{
+	stack_t *node;
+
+	node = malloc(sizeof(stack_t));
+	if (node == NULL)
+		err(4);
+	node->next = NULL;
+	node->prev = NULL;
+	node->n = n;
+	return (node);
+}
+
+/**
+ * free_nodes - Frees nodes in the stack.
+ */
+void free_nodes(void)
+{
+	stack_t *tmp;
+
+	if (head == NULL)
+		return;
+
+	while (head != NULL)
+	{
+		tmp = head;
+		head = head->next;
+		free(tmp);
+	}
+}
+
+
+/**
+ * add_to_queue - Adds a node to the queue.
+ * @new_node: Pointer to the new node.
+ * @ln: line number of the opcode.
+ */
+void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
+{
+	stack_t *tmp;
+
+	if (new_node == NULL || *new_node == NULL)
+		exit(EXIT_FAILURE);
+	if (head == NULL)
+	{
+		head = *new_node;
+		return;
+	}
+	tmp = head;
+	while (tmp->next != NULL)
+		tmp = tmp->next;
+
+	tmp->next = *new_node;
+	(*new_node)->prev = tmp;
+
 }
