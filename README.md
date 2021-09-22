@@ -233,7 +233,7 @@ When switching mode:
     The top of the stack becomes the front of the queue
     The front of the queue becomes the top of the stack
 
-### :white_large_square: 16. Holberton
+### :white_check_mark: 16. Brainf*ck
 Write a Brainf*ck script that prints `School`, followed by a new line.
 
     All your Brainf*ck files should be stored inside the `bf` sub directory
@@ -242,7 +242,7 @@ Write a Brainf*ck script that prints `School`, followed by a new line.
 
 File(s): [`1000-school.bf`](https://github.com/Elmahdi1962/monty/blob/master/bf/1000-school.bf)
 
-### :white_large_square: 17. Add two digits
+### :white_check_mark: 17. Add two digits
 Add two digits given by the user.
 
     Read the two digits from stdin, add them, and print the result
@@ -250,7 +250,7 @@ Add two digits given by the user.
 
 File(s): [`1001-add.bf`](https://github.com/Elmahdi1962/monty/blob/master/bf/1001-add.bf)
 
-### :white_large_square: 18. Multiplication
+### :white_check_mark: 18. Multiplication
 Multiply two digits given by the user.
 
     Read the two digits from stdin, multiply them, and print the result
@@ -258,7 +258,7 @@ Multiply two digits given by the user.
 
 File(s): [`1002-mul.bf`](https://github.com/Elmahdi1962/monty/blob/master/bf/1002-mul.bf)
 
-### :white_large_square: 19. Multiplication level up
+### :white_check_mark:: 19. Multiplication level up
 Multiply two digits given by the user.
 
     Read the two digits from stdin, multiply them, and print the result, followed by a new line
