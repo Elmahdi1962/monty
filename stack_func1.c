@@ -12,15 +12,15 @@ void add_to_stack(stack_t **new_node, __attribute__((unused))unsigned int ln)
 
 	if (new_node == NULL || *new_node == NULL)
 		exit(EXIT_FAILURE);
-	if (head == NULL)
+	if (gb->head == NULL)
 	{
-		head = *new_node;
+		gb->head = *new_node;
 		return;
 	}
-	tmp = head;
-	head = *new_node;
-	head->next = tmp;
-	tmp->prev = head;
+	tmp = gb->head;
+	gb->head = *new_node;
+	gb->head->next = tmp;
+	tmp->prev = gb->head;
 }
 
 
