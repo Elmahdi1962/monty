@@ -10,6 +10,7 @@ void open_file(char *file_name)
 {
 	FILE *fd = fopen(file_name, "r");
 
+	gb->fd = fd;
 	if (file_name == NULL || fd == NULL)
 		err(2, file_name);
 
@@ -28,11 +29,15 @@ void read_file(FILE *fd)
 {
 	int line_number, format = 0;
 	char *buffer = NULL;
+	char buf[100];
 	size_t len = 0;
 
 	for (line_number = 1; getline(&buffer, &len, fd) != -1; line_number++)
 	{
-		format = parse_line(buffer, line_number, format);
+		strcpy(buf, buffer);
+		free(buffer);
+		buffer = NULL;
+		format = parse_line(buf, line_number, format);
 	}
 	free(buffer);
 }
@@ -155,5 +160,5 @@ void call_fun(op_func func, char *op, char *val, int ln, int format)
 			add_to_queue(&node, ln);
 	}
 	else
-		func(&head, ln);
+		func(&gb->head, ln);
 }
