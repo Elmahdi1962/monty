@@ -80,6 +80,7 @@ int parse_line(char *buffer, int line_number, int format)
  * @opcode: opcode
  * @value: argument of opcode
  * @format:  storage format. If 0 Nodes will be entered as a stack.
+ * @ln: line number
  * if 1 nodes will be entered as a queue.
  * Return: void
  */
