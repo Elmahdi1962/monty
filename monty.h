@@ -39,13 +39,7 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-typedef struct global_data
-{
-        stack_t *head;
-        FILE *fd;
-} gb_data;
-
-extern gb_data *gb;
+extern stack_t *head;
 typedef void (*op_func)(stack_t **, unsigned int);
 
 /*file operations*/

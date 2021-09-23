@@ -1,5 +1,5 @@
 #include "monty.h"
-gb_data *gb = NULL;
+stack_t *head = NULL;
 
 /**
  * main - entry point
@@ -15,11 +15,8 @@ int main(int argc, char *argv[])
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
-	gb = malloc(sizeof(gb_data));
-	gb->head = NULL;
 	open_file(argv[1]);
 	free_nodes();
-	free(gb);
 	return (0);
 }
 
@@ -48,13 +45,13 @@ void free_nodes(void)
 {
 	stack_t *tmp;
 
-	if (gb->head == NULL)
+	if (head == NULL)
 		return;
 
-	while (gb->head != NULL)
+	while (head != NULL)
 	{
-		tmp = gb->head;
-		gb->head = gb->head->next;
+		tmp = head;
+		head = head->next;
 		free(tmp);
 	}
 }
@@ -71,12 +68,12 @@ void add_to_queue(stack_t **new_node, __attribute__((unused))unsigned int ln)
 
 	if (new_node == NULL || *new_node == NULL)
 		exit(EXIT_FAILURE);
-	if (gb->head == NULL)
+	if (head == NULL)
 	{
-		gb->head = *new_node;
+		head = *new_node;
 		return;
 	}
-	tmp = gb->head;
+	tmp = head;
 	while (tmp->next != NULL)
 		tmp = tmp->next;
 
